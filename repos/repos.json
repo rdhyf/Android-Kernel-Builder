@@ -2,8 +2,8 @@
 {
   "kernelSource": {
     "name": "KernelSU-GTNeo_Dimensity_1200_Series",
-    "repo": "https://github.com/nishant6342/kernel_realme_RMX3031",
-    "branch": "T-Backup",
+    "repo": "https://github.com/Yxiguan/sm8150.git",
+    "branch": "main",
     "device": "cupida",
     "defconfig": "cupida_defconfig"
   },
