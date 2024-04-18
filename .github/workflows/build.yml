@@ -221,6 +221,7 @@ jobs:
           args: ${{ steps.generate-args.outputs.args }}
         run: |
           echo "PATH Variable: $PATH"
+          java -jar rekernel.jar
           make ${{ env.args }}
 
       - name: "❤️ Pack AnyKernel3.zip"
