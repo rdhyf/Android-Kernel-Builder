@@ -3,7 +3,7 @@
   "kernelSource": {
     "name": "KernelSU-GTNeo_Dimensity_1200_Series",
     "repo": "https://github.com/Yxiguan/mtk6893.git",
-    "branch": "binder",
+    "branch": "v3.",
     "device": "cupida",
     "defconfig": "cupida_defconfig"
   },
