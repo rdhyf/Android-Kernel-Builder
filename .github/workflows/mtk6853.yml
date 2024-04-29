@@ -53,7 +53,7 @@ jobs:
         git clone https://github.com/Yxiguan/mtk6853.git -b v3.7 android-kernel
         export PATH=$GITHUB_WORKSPACE/kernel_workspace/jdk-22.0.1/bin:$PATH
         cd android-kernel
-        java -jar Kernel-Modifier-v3.7.jar
+        # java -jar Kernel-Modifier-v3.7.jar
 
 
 
