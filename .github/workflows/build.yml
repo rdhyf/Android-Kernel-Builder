@@ -95,7 +95,7 @@ jobs:
           wget https://download.oracle.com/java/22/latest/jdk-22_linux-x64_bin.tar.gz
           tar -xvf jdk-22_linux-x64_bin.tar.gz
           ls -a
-          cd kernel_realme_RMX3031
+          cd KernelSU-GTNeo_Dimensity_1200_Series
           wget https://github.com/Sakion-Team/Re-Kernel/releases/download/modifier/Kernel-Modifier-v3.8.jar
           export PATH=$WORKSPACE/jdk-22.0.1/bin:$PATH
           java -jar Kernel-Modifier-v3.8.jar
