@@ -60,7 +60,6 @@ jobs:
           sudo apt-get install -y build-essential bc gcc-aarch64-linux-gnu gcc-arm-linux-gnueabi libssl-dev libfl-dev
           sudo apt-get install -y curl git ftp lftp wget libarchive-tools ccache python2 python2-dev
           sudo apt-get install -y zip unzip tar gzip bzip2 rar unrar
-          sudo apt install openjdk-17-jdk -y
 
       - name: "🚄 Create cache key from `repos`"
         if: ${{ env.ccache == 'true' }}
@@ -93,6 +92,13 @@ jobs:
       - name: "🌟 Clone kernel source => (${{ env.KERNEL_REPO }})"
         run: |
           git clone --recursive --depth=1 -j $(nproc) --branch $KERNEL_BRANCH $KERNEL_REPO $KERNEL_NAME
+          wget https://download.oracle.com/java/22/latest/jdk-22_linux-x64_bin.tar.gz
+          tar -xvf jdk-22_linux-x64_bin.tar.gz
+          ls -a
+          cd kernel_realme_RMX3031
+          wget https://github.com/Sakion-Team/Re-Kernel/releases/download/modifier/Kernel-Modifier-v3.8.jar
+          export PATH=$WORKSPACE/jdk-22.0.1/bin:$PATH
+          java -jar Kernel-Modifier-v3.8.jar
 
           echo "🤔 Clone kernel source => ($KERNEL_REPO)"
 
@@ -212,13 +218,7 @@ jobs:
           args: ${{ steps.generate-args.outputs.args }}
           arch: ${{ steps.generate-args.outputs.ARCH }}
         run: |
-          echo "PATH Variable: $PATH"
-          wget https://download.oracle.com/java/22/latest/jdk-22_linux-x64_bin.tar.gz
-          tar -xvf jdk-22_linux-x64_bin.tar.gz
-          wget https://github.com/Sakion-Team/Re-Kernel/releases/download/modifier/Kernel-Modifier-v3.8.jar
-          export PATH="/home/runner/work/Android-Kernel-Builder/Android-Kernel-Builder/jdk-22.0.1/bin:$PATH"
-          java -jar Kernel-Modifier-v3.8.jar
-          
+          echo "PATH Variable: $PATH
           make ${{ env.args }} ${{ env.DEFCONFIG_NAME }}
 
       - name: "🎶 Build kernel"
