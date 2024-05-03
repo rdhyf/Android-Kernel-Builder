@@ -8,7 +8,13 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    strategy:
+      max-parallel: 7
+      fail-fast: false
+      matrix:
+        repos: ${{ fromJSON(needs.Set-repos.outputs.repos) }}
+    env:
+      KERNEL_MODIFIER: ${{ matrix.repos.kernelsource.km }}
     steps:
     - uses: actions/checkout@v3
 
@@ -64,9 +70,9 @@ jobs:
     - name: 下载Kernel-Modifier
       run: |
         cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel
-        wget https://github.com/Sakion-Team/Re-Kernel/releases/download/modifier/Kernel-Modifier-v3.8.jar
+        wget https://github.com/Sakion-Team/Re-Kernel/releases/download/modifier/Kernel-Modifier-$KERNEL_MODIFIER.jar
         export PATH=$GITHUB_WORKSPACE/kernel_workspace/jdk-22.0.1/bin:$PATH
-        java -jar Kernel-Modifier-v3.8.jar
+        java -jar Kernel-Modifier-$KERNEL_MODIFIER.jar
                
     - name: 设置ccache缓存
       uses: hendrikmuhs/ccache-action@v1.2
