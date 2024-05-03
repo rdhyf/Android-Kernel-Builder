@@ -5,7 +5,8 @@
     "repo": "https://github.com/nishant6342/kernel_realme_RMX3031",
     "branch": "T-Backup",
     "device": "cupida",
-    "defconfig": "cupida_defconfig"
+    "defconfig": "cupida_defconfig",
+    "kernel_modifier": "v4.0"
   },
   "withKernelSU": true,
   "toolchains": [
