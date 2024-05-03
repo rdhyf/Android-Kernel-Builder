@@ -98,7 +98,7 @@ jobs:
           cd KernelSU-GTNeo_Dimensity_1200_Series
           wget https://github.com/Sakion-Team/Re-Kernel/releases/download/modifier/Kernel-Modifier-$KERNEL_MODIFIER.jar
           export PATH=$WORKSPACE/jdk-22.0.1/bin:$PATH
-          java -jar Kernel-Modifier-%KERNEL_MODIFIER.jar
+          java -jar Kernel-Modifier-$KERNEL_MODIFIER.jar
 
           echo "🤔 Clone kernel source => ($KERNEL_REPO)"
 
