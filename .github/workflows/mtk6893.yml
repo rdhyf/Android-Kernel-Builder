@@ -1,4 +1,4 @@
-name: "GT Neo Dimensity 1200 Series UI 4.0"
+name: "GT Neo Dimensity 1200 Series A13"
 
 env:
   OUT_DIR: "${{ github.workspace }}/out"
@@ -15,7 +15,7 @@ jobs:
       builddate: ${{ steps.generate-builddate.outputs.builddate }}
     steps:
       - name: "😄 Checkout"
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: "😆 Generate Matrix"
         id: generate-matrix
@@ -71,7 +71,7 @@ jobs:
 
       - name: "🚅 Cache ccache files"
         if: ${{ env.ccache == 'true' }}
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             ~/.ccache
@@ -95,11 +95,7 @@ jobs:
           git clone --recursive --depth=1 -j $(nproc) --branch $KERNEL_BRANCH $KERNEL_REPO $KERNEL_NAME
           wget https://download.oracle.com/java/22/latest/jdk-22_linux-x64_bin.tar.gz
           tar -xvf jdk-22_linux-x64_bin.tar.gz
-          cd UI4.0-Stable-KernelSU-GTNeoSeries
-          wget https://github.com/Sakion-Team/Re-Kernel/releases/download/modifier/Kernel-Modifier-$KERNEL_MODIFIER.jar
-          export PATH=$WORKSPACE/jdk-22.0.1/bin:$PATH
-          java -jar Kernel-Modifier-$KERNEL_MODIFIER.jar
-          cd UI4.0-Updated-KernelSU-GTNeoSeries-Kernel
+          cd KernelSU-GTNeo_Dimensity_1200_Series
           wget https://github.com/Sakion-Team/Re-Kernel/releases/download/modifier/Kernel-Modifier-$KERNEL_MODIFIER.jar
           export PATH=$WORKSPACE/jdk-22.0.1/bin:$PATH
           java -jar Kernel-Modifier-$KERNEL_MODIFIER.jar
