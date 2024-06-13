@@ -1,7 +1,7 @@
 [
 {
   "kernelSource": {
-    "name": "KernelSU-GTNeo_Dimensity_1200_Series",
+    "name": "UI4.0-Updated-KernelSU-GTNeoSeries-Kernel",
     "repo": "https://github.com/nishant6342/kernel_realme_RMX3031",
     "branch": "T",
     "device": "cupida",
