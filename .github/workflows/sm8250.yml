@@ -35,11 +35,8 @@ jobs:
       matrix:
         repos: ${{ fromJSON(needs.Set-repos.outputs.repos) }}
     env:
-      KERNEL_MODIFIER: ${{ matrix.repos.kernelsource.km }}
     steps:
     - uses: actions/checkout@v3
-
-
 
     - name: 构建编译内核环境
       run: |
