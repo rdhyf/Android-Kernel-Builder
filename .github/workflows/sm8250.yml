@@ -1,5 +1,5 @@
 name: 编译OPPO/Realme-sm8250机型内核
-            支持ksu docker lxc kvm Kali-Nethunter
+            支持ksu
 
 on:
   workflow_dispatch:
@@ -83,17 +83,15 @@ jobs:
 
     - name: 更新 ksu
       run: |
-        cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel
+        cd $GITHUB_WORKSPACE/kernel_workspace/bigshot-215-RUI
         rm -rf KernelSU
         curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s v0.9.5
         
         
-    - name: 下载Kernel-Modifier
+    - name: 修改kona-perf_defconfig
       run: |
-        cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel
-        wget https://github.com/Sakion-Team/Re-Kernel/releases/download/modifier/Kernel-Modifier-$KERNEL_MODIFIER.jar
-        export PATH=$GITHUB_WORKSPACE/kernel_workspace/jdk-22.0.1/bin:$PATH
-        java -jar Kernel-Modifier-$KERNEL_MODIFIER.jar
+        cd $GITHUB_WORKSPACE/kernel_workspace/bigshot-215-RUI
+        sed -i '/^CONFIG_MODULE_SIG/s/^/#/' $GITHUB_WORKSPACE/kernel_workspace/bigshot-215-RUI/arch/arm64/configs/vendor/kona-perf_defconfig
                
     - name: 设置ccache缓存
       uses: hendrikmuhs/ccache-action@v1.2
@@ -104,7 +102,7 @@ jobs:
  
     - name: 开始编译内核
       run: |
-        cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel
+        cd $GITHUB_WORKSPACE/kernel_workspace/bigshot-215-RUI
         export PATH=$GITHUB_WORKSPACE/kernel_workspace/clang-aosp/bin:$GITHUB_WORKSPACE/kernel_workspace/gcc64/bin:$GITHUB_WORKSPACE/kernel_workspace/gcc32/bin:$PATH
         export KBUILD_BUILD_HOST=
         export KBUILD_BUILD_USER=
@@ -135,4 +133,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: sm8250-Image.gz
-        path: kernel_workspace/android-kernel/out/arch/arm64/boot/Image.gz
+        path: kernel_workspace/bigshot-215-RUI/out/arch/arm64/boot/Image.gz
