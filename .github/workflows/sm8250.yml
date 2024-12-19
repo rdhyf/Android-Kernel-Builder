@@ -34,7 +34,6 @@ jobs:
       fail-fast: false
       matrix:
         repos: ${{ fromJSON(needs.Set-repos.outputs.repos) }}
-    env:
     steps:
     - uses: actions/checkout@v3
 
