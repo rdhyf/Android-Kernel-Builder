@@ -74,22 +74,22 @@ jobs:
     - name: 下载内核源码
       run: |
         cd $GITHUB_WORKSPACE/kernel_workspace
-        git clone https://github.com/Blackmanx/bigshot_kernel_realme_sm8250 bigshot-215-RUI
-        cd bigshot-215-RUI
+        git clone https://github.com/Lyinx01/kernel_realme_sm8250 Pulvis-RUI-Alpha
+        cd Pulvis-RUI-Alpha
 
 
 
     - name: 更新 ksu
       run: |
-        cd $GITHUB_WORKSPACE/kernel_workspace/bigshot-215-RUI
+        cd $GITHUB_WORKSPACE/kernel_workspace/Pulvis-RUI-Alpha
         rm -rf KernelSU
         curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s v0.9.5
         
         
-    - name: 修改sm8250_defconfig
+    - name: 修改kona-perf_defconfig
       run: |
-        cd $GITHUB_WORKSPACE/kernel_workspace/bigshot-215-RUI
-        sed -i '/^CONFIG_MODULE_SIG/s/^/#/' $GITHUB_WORKSPACE/kernel_workspace/bigshot-215-RUI/arch/arm64/configs/vendor/sm8250_defconfig
+        cd $GITHUB_WORKSPACE/kernel_workspace/Pulvis-RUI-Alpha
+        sed -i '/^CONFIG_MODULE_SIG/s/^/#/' $GITHUB_WORKSPACE/kernel_workspace/Pulvis-RUI-Alpha/arch/arm64/configs/vendor/kona-perf_defconfig
                
     - name: 设置ccache缓存
       uses: hendrikmuhs/ccache-action@v1.2
@@ -100,11 +100,11 @@ jobs:
  
     - name: 开始编译内核
       run: |
-        cd $GITHUB_WORKSPACE/kernel_workspace/bigshot-215-RUI
+        cd $GITHUB_WORKSPACE/kernel_workspace/Pulvis-RUI-Alpha
         export PATH=$GITHUB_WORKSPACE/kernel_workspace/clang-aosp/bin:$GITHUB_WORKSPACE/kernel_workspace/gcc64/bin:$GITHUB_WORKSPACE/kernel_workspace/gcc32/bin:$PATH
         export KBUILD_BUILD_HOST=
         export KBUILD_BUILD_USER=
-        make -s -j$(nproc --all) O=out ARCH=arm64 vendor/sm8250_defconfig
+        make -s -j$(nproc --all) O=out ARCH=arm64 vendor/kona-perf_defconfig
         make -j$(nproc --all) CC="ccache clang" O=out ARCH=arm64 CLANG_TRIPLE=aarch64-linux-gnu- CROSS_COMPILE=aarch64-linux-android- CROSS_COMPILE_ARM32=arm-linux-androideabi- LD=ld.lld
                 
 
@@ -131,4 +131,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: sm8250-Image.gz
-        path: kernel_workspace/bigshot-215-RUI/out/arch/arm64/boot/Image.gz
+        path: kernel_workspace/Pulvis-RUI-Alpha/out/arch/arm64/boot/Image.gz
