@@ -5,7 +5,7 @@
     "repo": "https://github.com/Lyinx01/kernel_realme_sm8250",
     "branch": "Pulvis-RUI-Alpha",
     "device": "sm8250",
-    "defconfig": "kona-perf_defconfig",
+    "defconfig": "kona-perf_defconfig"
   },
   "withKernelSU": true,
   "toolchains": [
