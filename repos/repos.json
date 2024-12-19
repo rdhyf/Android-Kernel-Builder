@@ -1,11 +1,11 @@
 [
 {
   "kernelSource": {
-    "name": "KernelSU-GTNeo_2",
-    "repo": "https://github.com/Blackmanx/bigshot_kernel_realme_sm8250",
-    "branch": "bigshot-215-RUI",
+    "name": "KernelSU-GTNeo2",
+    "repo": "https://github.com/Lyinx01/kernel_realme_sm8250",
+    "branch": "Pulvis-RUI-Alpha",
     "device": "sm8250",
-    "defconfig": "sm8250_defconfig"
+    "defconfig": "kona-perf_defconfig",
   },
   "withKernelSU": true,
   "toolchains": [
