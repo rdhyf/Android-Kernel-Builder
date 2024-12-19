@@ -34,6 +34,8 @@ jobs:
       fail-fast: false
       matrix:
         repos: ${{ fromJSON(needs.Set-repos.outputs.repos) }}
+    env:
+      WORKSPACE: ${{ github.workspace }}
     steps:
     - uses: actions/checkout@v3
 
